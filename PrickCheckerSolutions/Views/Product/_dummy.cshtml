@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PrickCheckerSolutions.ViewModel.vm_Product>
+
+
+<script>
+    $(document).ready(function () {
+        $('.slider').slider();
+    });
+
+
+
+</script>
+
+
+@foreach (var item in Model)
+{
+
+    <!-- product deatils -->
+    <div class="section">
+        @Html.Partial("_dummyProduct", item)
+    </div>
+    <div class="divider"></div>
+
+    <!-- prices deatils -->
+    <div class="section">
+        <div class="row">
+            @foreach (var _price in item.prices.OrderBy(x => x.price))
+            {
+                @Html.Partial("_SinglePriceView", new List<string> { _price.id.ToString(), string.Format("{0:0.##}", _price.price) })
+            }
+        </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- comparison -->
+    <div class="section">
+        @Html.Partial("_dummyComparison", item.prices)
+    </div>
+    <div class="divider"></div>
+
+
+}
+
+

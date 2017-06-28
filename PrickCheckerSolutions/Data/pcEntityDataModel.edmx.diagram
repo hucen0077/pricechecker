@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e02f0fc4acc24333b7bec050af3b9b0d" Name="Diagram1">
+        <EntityTypeShape EntityType="pricecheckerModel.Error" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="pricecheckerModel.AspNetRole" Width="1.5" PointX="3.375" PointY="3.375" />
+        <EntityTypeShape EntityType="pricecheckerModel.AspNetUserClaim" Width="1.5" PointX="7.875" PointY="1.875" />
+        <EntityTypeShape EntityType="pricecheckerModel.AspNetUserLogin" Width="1.5" PointX="7.875" PointY="4.625" />
+        <EntityTypeShape EntityType="pricecheckerModel.AspNetUser" Width="1.5" PointX="5.625" PointY="1.125" />
+        <AssociationConnector Association="pricecheckerModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="pricecheckerModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="pricecheckerModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="pricecheckerModel.tbl_SystemMessages" Width="1.5" PointX="0.75" PointY="3.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+   
+    function loadlist()
+    {
+        $("#results").load('@Url.Action("getRolesPartial")');
+    }
+
+    function clearOperational()
+    {
+        $("#oprDiv").html("");
+    }
+
+
+    //create new
+    $('body').on('click', '#btnCreate', function () {
+        var _name = $("#txt_rolename").val();
+
+        if (_name == null || _name == '' || _name.length <= 0)
+        {
+            toastr.warning("Please provide role name");
+        }
+        else {
+            $.post('@Url.Action("Create", "Role")',
+            {
+                id: 'new',
+                name: _name
+            })
+            .done(function (msg) {
+                toastr.success(msg);
+                clearOperational();
+                loadlist();
+            })
+            .fail(function (xhr, status, error) {
+                toastr.error(error);
+            });
+        }
+    });
+
+    //Edit role
+    $('body').on('click', '#btnEdit', function () {
+        var _name = $("#txt_rolename").val();
+        var _id = $("#txt_id").val();
+
+        if (_id == null || _id == '' || _id.length <= 0 || _name == null || _name == '' || _name.length <= 0) {
+            toastr.warning("Please provide role name");
+        }
+        else {
+            $.post('@Url.Action("Edit", "Role")',
+            {
+                id: _id,
+                name: _name
+            })
+            .done(function (msg) {
+                toastr.success(msg);
+                clearOperational();
+                loadlist();
+            })
+            .fail(function (xhr, status, error) {
+                toastr.error(error);
+            });
+        }
+    });
+
+    //delete role
+    $('body').on('click', '#btnDelete', function () {
+        var _name = $("#txt_rolename").val();
+        var _id = $("#txt_id").val();
+
+        if (_id == null || _id == '' || _id.length <= 0 || _name == null || _name == '' || _name.length <= 0) {
+            toastr.warning("Please provide role name");
+        }
+        else {
+            
+            $.post('@Url.Action("Delete", "Role")',
+            {
+                id: _id,
+                name: _name
+            }).done(function (msg) {
+                toastr.success(msg);
+                clearOperational();
+                loadlist();
+            }).fail(function (xhr, status, error) {
+                toastr.error(error);
+            });
+           
+        }
+    });
+
+
+    //reload
+    $(document).ready(function () {
+        loadlist();
+    });
+
+    $('body').on('click', '[data-crud="y"]', function (e) {
+        e.preventDefault();
+        $("#" + $(this).data("outputdiv")).load($(this).attr("href"));
+    });
+
+    //
+    $('body').on('click', '[data-cancelopr="y"]', function (e) {
+        e.preventDefault();
+        $("#" + $(this).data("outputdiv")).html('');
+    });
+</script>
+
+<br />
+<br />
+<br />
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h3>Roles Management</h3>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12" id="btnHolder">
+        <a href='@Url.Action("Create", "Role")' class="btn btn-primary" data-crud="y" data-outputdiv="oprDiv"> New </a>
+        <a href='#' onclick="javascript: loadlist();" class="btn btn-primary"> Refresh </a>
+    </div>
+</div>
+<br />
+<br />
+
+<div class="row">
+    <div class="col-sm-12" id="oprDiv">
+        
+    </div>
+</div>
+
+<div class="divider"></div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-sm-12" id="results">
+
+    </div>
+</div>

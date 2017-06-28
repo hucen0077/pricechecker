@@ -1,0 +1,18 @@
+﻿@model PrickCheckerSolutions.ViewModel.vm_ProductItemSearchResult
+
+@if (Model != null)
+{
+    
+    <a href="#" class="searchresult_item" id="searchresult_item_@Model.id">
+        <div class="col s12 m6 l3">
+            <div class="card hoverable">
+                <div class="card-image">
+                    <img src='@Url.Action("ShowImageLarge", "Media", new { id = Model.imgid })' data-src='@Url.Action("ShowImageLarge", "Media", new { id = Model.imgid })' class='responsive-img'/>
+                </div>
+                <div class="card-action light-blue darken-2">
+                    <span class="card-title white-text truncate">@Model.name</span>
+                </div>
+            </div>
+        </div>
+    </a>
+}

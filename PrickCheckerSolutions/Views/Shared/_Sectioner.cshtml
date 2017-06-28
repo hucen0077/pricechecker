@@ -1,0 +1,32 @@
+﻿@model PrickCheckerSolutions.ViewModel.vm_Sectioner
+
+@if (Model != null)
+{
+    <div class="section @string.Format("{0}", Model.sectioncolor ?? "white")" id="@string.Format("sectioner_{0}", Model.id)" data-guid='@string.Format("{0}", Model.guid)'>
+        <div class="row container">
+            @if (!string.IsNullOrEmpty(Model.heading) && (int)Model.heading.Length >= 1)
+            {
+                <h2 class="header @string.Format("{0}", Model.headingclasses ?? string.Empty)">@string.Format("{0}", Model.heading)</h2>
+            }
+            
+            @if (!string.IsNullOrEmpty(Model.htmlcontent) && (int)Model.htmlcontent.Length >= 1)
+            {
+                <p class='@string.Format("{0}", Model.htmlcontentclasses ?? string.Empty)'>@string.Format("{0}", Model.htmlcontent ?? string.Empty)</p>
+            }
+
+            <div id="@Model.guid" style="@string.Format("{0}", Model.contentstyles ?? string.Empty)"></div>
+
+            @if(Model.isstatic)
+            {
+                <script>
+                    $('@string.Format("#{0}", Model.guid)').load('@Url.Content(string.Format("{0}{1}", "~/Static/", Model.parameters[0].value) )');
+                </script>
+            }
+            else
+            {
+
+            }
+
+        </div>
+    </div>
+}

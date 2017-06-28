@@ -1,0 +1,38 @@
+﻿
+
+<script>
+
+    $('body').on('click', '.btnSearchtest', function(){
+        var pgno = $(this).data("pgno");
+        
+        search(pgno);
+    });
+
+    function search(pg)
+    {
+        var qt = $("#txtsearchtest").val();
+        var url = '@Url.Action("Search", "Home")' + '?page=' + pg + '&q=' + qt;
+
+
+        $.get(url, function (data) {
+            $("#result").html("").html(data)
+        });
+
+        
+    }
+
+</script>
+
+<input id="txtsearchtest" type="text" />
+
+<button class="btnSearchtest" data-pgno="1">Page 1</button>
+<button class="btnSearchtest" data-pgno="2">Page 2</button>
+<button class="btnSearchtest" data-pgno="3">Page 3</button>
+<button class="btnSearchtest" data-pgno="4">Page 4</button>
+<button class="btnSearchtest" data-pgno="5">Page 5</button>
+<button class="btnSearchtest" data-pgno="6">Page 6</button>
+<button class="btnSearchtest" data-pgno="7">Page 7</button>
+
+<div id="result">
+
+</div>

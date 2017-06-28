@@ -1,0 +1,15 @@
+﻿@model List<System.String>
+
+
+    <div class="col s12 m6 l3">
+        <div class="card hoverable">
+            <div class="card-image">
+                <img src='@Url.Content(string.Format("~/Images/_logo{0}.png", Model[0].ToString()))'>
+            </div>
+            <div class="card-action light-blue darken-2">
+                <span class="card-title white-text">
+                    @string.Format("MVR {0}", Model[1].ToString())
+                </span>
+            </div>
+        </div>
+    </div>

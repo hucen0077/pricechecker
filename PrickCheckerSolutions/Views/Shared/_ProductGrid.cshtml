@@ -1,0 +1,17 @@
+﻿@model IEnumerable<PrickCheckerSolutions.ViewModel.vm_ProductItemSearchResult>
+
+@if(Model != null && (int)Model.Count() >= 1)
+{
+    foreach(var item in Model)
+    {
+        @Html.Partial("_SearchProductItemView", (PrickCheckerSolutions.ViewModel.vm_ProductItemSearchResult)item)
+    }
+
+    <a href='@string.Format("{0}", Url.Action("_GetSearchResults", "Search", new { q = (string)ViewBag.SearchTerm, page = (int)ViewBag.CurrentBlock + 1 }))' title="More Content" rel="next">Loading...</a>
+}
+else
+{
+    <div class="col s12 m12 l12 center-align">
+        <h4 class="grey-text light">That's all we found...</h4>
+    </div>
+}

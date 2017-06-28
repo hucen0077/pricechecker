@@ -1,0 +1,34 @@
+﻿
+@section meta
+{
+    <meta description="some test meta tags about us" />
+}
+
+@Html.Partial("_Sectioner", new PrickCheckerSolutions.ViewModel.vm_Sectioner
+{
+    id = 1,
+    guid = Guid.NewGuid(),
+    heading = "Some Sample Content",
+    headingclasses = "white-text left-align",
+    functiontoload = "",
+    parameters = null,
+    htmlcontent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida nulla ac diam euismod laoreet. Aliquam malesuada lacus nec nisl sollicitudin varius. Curabitur lobortis tempus odio pulvinar malesuada. Nam luctus mi sit amet nulla porta elementum. Fusce sagittis in purus sit amet sodales. Proin sem arcu, semper sit amet laoreet vitae, laoreet vitae felis. Aenean mi lacus, rutrum eget neque ut, bibendum congue ante. Quisque non tortor in elit placerat interdum. Suspendisse a varius massa.",
+    htmlcontentclasses = "grey-text text-darken-3 lighten-3",
+    sectioncolor = "green z-depth-2",
+    isstatic = false
+})
+
+@Html.Partial("_Sectioner", new PrickCheckerSolutions.ViewModel.vm_Sectioner
+{
+    id = 2,
+    guid = Guid.NewGuid(),
+    heading = "",
+    headingclasses = "",
+    functiontoload = "",
+    parameters = new List<PrickCheckerSolutions.ViewModel.FunctionParameterValue> { new PrickCheckerSolutions.ViewModel.FunctionParameterValue { parameter = "_file", value = "aboutUsContent.html" } },
+    htmlcontent = "",
+    htmlcontentclasses = "grey-text text-darken-3 lighten-3 light",
+    sectioncolor = "light-green",
+    isstatic = true,
+    contentstyles = "blue-text"
+})

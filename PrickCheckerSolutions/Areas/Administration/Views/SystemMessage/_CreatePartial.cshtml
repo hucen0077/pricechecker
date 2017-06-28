@@ -1,0 +1,77 @@
+﻿@model PrickCheckerSolutions.Infrastructure.Sysmsg
+
+
+@using (Html.BeginForm("Create", "SystemMessage", FormMethod.Post, new { @id = "SystemMessageForm"}))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+    <h4>New System Message</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.message, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+
+}
+
+<script type="text/javascript">
+
+    function OnSuccess(response) {
+        $("#pc_listContent").html("").load('@Url.Action("_GetList", "SystemMessage", new { srch = string.Empty })');
+    }
+
+    function OnFailure(response) {
+        alert("Whoops! That didn't go so well did it?");
+    }
+
+    $("body").on("submit", "#SystemMessageForm", function (e) {
+        e.preventDefault();
+        
+        var form = $(this);
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+        /*POST*/
+        $.ajax({
+            url: $(this).attr("action"),
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data:
+                {
+                    __RequestVerificationToken: token, 
+                    model: { name: $("#name").val(), message: $("#message").val() }
+                },
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                OnSuccess();
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        })
+
+    });
+
+</script>

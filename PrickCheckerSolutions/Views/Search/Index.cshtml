@@ -1,0 +1,100 @@
+﻿
+
+<div class="row">
+
+    @if (ViewBag.SearchTerm == null)
+    {
+        <div class="col s12 m12 l12">
+            <h4 class="grey-text light">
+                Searching
+                <i class="blue-text"> everything </i>
+            </h4>
+        </div>
+    }
+    else
+    {
+        if (string.IsNullOrEmpty((string)Request.QueryString["q"]))
+        {
+            <div class="col s12 m12 l12">
+                <h4 class="grey-text light">
+                    Searching
+                    <i class="blue-text"> everything </i>
+                </h4>
+            </div>
+        }
+        else
+        {
+            <div class="col s12 m12 l12">
+                <h4 class="grey-text light">
+                    Searching
+                    <i class="blue-text"> @string.Format("{0}", (string)ViewBag.SearchTerm)</i>
+                </h4>
+            </div>
+        }
+    }
+
+
+</div>
+
+<div id="loadingtemplate" style="display: none !important;">
+    <div class="row">
+        <div class="col s12 m12 l12 center-align">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row" id="searchresults">
+
+
+        @{
+            try
+            {
+                Html.RenderAction("_GetSearchResults", "Search", new { q = (string)ViewBag.SearchTerm });
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+
+    </div>
+</div>
+
+
+
+<script src='@Url.Content("~/Scripts/jquery.jscroll.min.js")'></script>
+
+<script src='@Url.Content("~/Scripts/jquery.unveil.js")'></script>
+
+<script>
+
+    $("img").unveil();
+
+    var srchtrm = '@string.Format("{0}", (string)ViewBag.SearchTerm)'; //search term
+    var rescont = $("#searchresults");
+    var loading = $("#loadingtemplate");
+    
+    //conatiner of results
+    $(rescont).jscroll({
+        loadingHtml: $(loading).html(),
+        autoTrigger: true,
+        padding: -100,
+    });
+    
+
+</script>
+

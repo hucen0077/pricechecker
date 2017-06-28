@@ -1,0 +1,6 @@
+﻿@model System.String
+
+@if(Model != null && (int)Model.Length >= 1)
+{
+    @Html.Raw(Model)
+}

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PrickCheckerSolutions.ViewModel.vm_ShopPrice>
+
+@if (Model != null)
+{
+    int pricecnt = Model.Count() + 1;
+
+    <h2 class="light-blue-text darken-4">Price Comparison</h2>
+    <table class="table responsive-table">
+        <thead>
+            
+            <tr>
+                <td></td>
+                @foreach(var item in Model.OrderBy(x => x.price))
+                {
+                    <td>
+                        @item.shopname
+                        <br />
+                        <small class="blue-text darken-4">@string.Format("MVR {0:0.##}", item.price)</small>
+                    </td>
+                }
+            </tr>
+        </thead>
+        
+        <tbody>
+            
+            @foreach (var _price in Model.OrderBy(x => x.price))
+            {
+                <tr>
+                    <td>
+                        @_price.shopname
+                        <br />
+                        <small class="blue-text darken-4">@string.Format("MVR {0:0.##}", _price.price)</small>
+                    </td>
+                    @foreach (var _daprice in _price.comparison.OrderBy(x => x.daprice))
+                    {
+                        if (_daprice.difference == 0)
+                        {
+                            <td class="center hoverable">
+                                @string.Format("{0:0.##}", _daprice.difference)
+                                <br />
+                                @string.Format("{0:0.##}%", _daprice.diffpercent)
+                            </td>
+                        }
+                        else if (_daprice.difference < 0)
+                        {
+                            <td class="center hoverable light-green lighten-4 tooltipped" data-position="top" data-delay="50" data-tooltip='@string.Format("{0} price MVR {1:0.##} is MVR {2:0.##} less than {3}'s price of MVR {4:0.##}", _price.shopname, _price.price, (_daprice.difference * -1), _daprice.dashopname, _daprice.daprice)'>
+                                @string.Format("{0:0.##}", _daprice.difference * -1)
+                                <br />
+                                @string.Format("{0:0.##}%", _daprice.diffpercent)
+                            </td>
+                        }
+                        else if(_daprice.difference > 0)
+                        {
+                            <td class="center hoverable red lighten-4 tooltipped" data-position="top" data-delay="50" data-tooltip='@string.Format("{0} price MVR {1:0.##} is MVR {2:0.##} higher than {3}'s price of MVR {4:0.##}", _price.shopname, _price.price, _daprice.difference, _daprice.dashopname, _daprice.daprice)'>
+                                @string.Format("{0:0.##}", _daprice.difference)
+                                <br />
+                                @string.Format("{0:0.##}%", _daprice.diffpercent)
+                            </td>
+                        }
+
+                    }
+                </tr>
+               
+
+            }
+        </tbody>
+
+    </table>
+}

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href='@Url.Content("~/Content/materialize/css/materialize.min.css")' rel="stylesheet" media="all" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="all" type="text/css">
+    <link href='@Url.Content("~/Content/materializefonts/materialdesignicons.min.css")' rel="stylesheet" media="all" type="text/css" />
+    <link href='@Url.Content("~/Content/Site.css")' rel="stylesheet" media="all" type="text/css" />
+
+    <script src='@Url.Content("~/Scripts/jquery-2.1.1.min.js")'></script>
+    <script src='@Url.Content("~/Scripts/materialize/materialize.min.js")'></script>
+    
+
+    
+    <style>
+        body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        }
+
+        main {
+        flex: 1 0 auto;
+        position: relative;
+        top:-35px;
+        }
+
+        
+    </style>
+
+    @RenderSection("meta", false)
+
+
+</head>
+
+
+
+
+<body>
+    @Html.Partial("_navbar")
+    @Html.Partial("_menu")
+
+    <header>
+        @RenderSection("head", false)
+    </header>
+    
+    <main id="pc-bodycontainer">
+        @RenderBody()
+    </main>
+    
+    @Html.Partial("_footer")
+    @Html.Partial("_SocialMediaButtons")
+
+    <script>
+        $('.pc-sidenav').sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        });
+
+       
+    </script>
+
+</body>
+</html>

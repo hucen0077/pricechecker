@@ -1,0 +1,44 @@
+﻿
+<ul id="slide-out" class="side-nav">
+    <li>
+        <div class="">
+            <h3 class="thin center-align blue-text darken-2">
+                Price Checker
+            </h3>
+        </div>
+    </li>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li>
+            <div class="userView">
+                <div class="background">
+                    <img src='@Url.Content("~/Images/Placeholder/userimage_placeholder.jpg")' data-src='@Url.Content("~/Images/Placeholder/userimage_placeholder.jpg")' class="responsive-img" style="max-width:100% !important;" />
+                </div>
+                <h4 class="blue-text name subheader light center-align">Doctor Strange</h4>
+            </div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#">
+                My Shopping Lists
+            </a>
+        </li>
+
+    }
+    else
+    {
+
+        <li>
+            @Html.Partial("_LoginForm", new PrickCheckerSolutions.ViewModel.vm_Login())
+        </li>
+        
+        <li class="divider"></li>
+
+        <li>
+            @Html.Partial("_ManualRegisterForm", new PrickCheckerSolutions.Models.RegisterViewModel())
+        </li>
+    }
+    
+</ul>

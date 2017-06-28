@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Partial("_Slider")
+
+@Html.Partial("_adbox_fullwidth")
+
+@Html.Partial("_Parallaxer", new PrickCheckerSolutions.ViewModel.vm_Parallaxer { id = 1, guid = Guid.NewGuid().ToString(), image = "~/Images/Placeholder/img1.jpg" })
+
+@Html.Partial("_Sectioner", new PrickCheckerSolutions.ViewModel.vm_Sectioner {
+    id = 1,
+    guid = Guid.NewGuid(),
+    heading = "Some Sample Content",
+    headingclasses = "white-text right-align",
+    functiontoload = "",
+    parameters = null,
+    htmlcontent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida nulla ac diam euismod laoreet. Aliquam malesuada lacus nec nisl sollicitudin varius. Curabitur lobortis tempus odio pulvinar malesuada. Nam luctus mi sit amet nulla porta elementum. Fusce sagittis in purus sit amet sodales. Proin sem arcu, semper sit amet laoreet vitae, laoreet vitae felis. Aenean mi lacus, rutrum eget neque ut, bibendum congue ante. Quisque non tortor in elit placerat interdum. Suspendisse a varius massa.",
+    htmlcontentclasses = "grey-text text-darken-3 lighten-3 light",
+    sectioncolor = "blue"
+})
+
+@Html.Partial("_Parallaxer", new PrickCheckerSolutions.ViewModel.vm_Parallaxer { id = 3, guid = Guid.NewGuid().ToString(), image = "~/Images/Placeholder/img3.jpg" })
+
+@Html.Partial("_Sectioner", new PrickCheckerSolutions.ViewModel.vm_Sectioner
+{
+    id = 2,
+    guid = Guid.NewGuid(),
+    heading = "Another One",
+    headingclasses = "",
+    functiontoload = "",
+    parameters = null,
+    htmlcontent = "Lorem vitae, laoreet vitae felis. Aenean mi lacus, rutrum eget neque ut, bibendum congue ante. Quisque non tortor in elit placerat interdum. Suspendisse a varius massa.",
+    htmlcontentclasses = "grey-text text-darken-3 lighten-3 light",
+    sectioncolor = ""
+})
+
+@Html.Partial("_Parallaxer", new PrickCheckerSolutions.ViewModel.vm_Parallaxer { id = 2, guid = Guid.NewGuid().ToString(), image = "~/Images/Placeholder/img2.jpg" })
+
+
+<script>
+    $(document).ready(function () {
+        $('.parallax').parallax();
+
+        $('#index_slider').slider({
+            indicators: false,
+            height: 800,
+            interval: 5000,
+            transition: 1000
+        });
+
+        $('.card.adbox').hover(
+           function () {
+               $(this).find('> .card-image > img.activator').click();
+           }, function () {
+               $(this).find('> .card-reveal > .card-title').click();
+           }
+       );
+
+    });
+    
+</script>
+

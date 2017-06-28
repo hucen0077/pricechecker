@@ -1,0 +1,10 @@
+﻿@model PrickCheckerSolutions.ViewModel.vm_Parallaxer
+
+@if (Model != null && !string.IsNullOrEmpty(Model.image) && (int)Model.image.Length >= 1)
+{
+    <div class="parallax-container" id="@string.Format("parallaxer_{0}", Model.id)" data-guid="@Model.guid">
+        <div class="parallax">
+            <img src='@Url.Content(Model.image)'>
+        </div>
+    </div>
+}

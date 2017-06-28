@@ -1,0 +1,12 @@
+﻿/* Custom site styles */
+
+.card-image img{
+    max-height:300px !important; 
+    min-height:300px !important;
+}
+
+
+.adbox-fullwidth-height-130 
+{
+    max-height: 130px !important;
+}

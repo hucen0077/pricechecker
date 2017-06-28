@@ -1,0 +1,17 @@
+﻿@model PrickCheckerSolutions.ViewModel.vm_Search
+
+@using (Html.BeginForm("Index", "Search", FormMethod.Get))
+{
+
+    <div class="input-field">
+            <div class="row">
+                @Html.TextBoxFor(model => model.q, new { @id = "search", @type = "search", @style= "height:64px !important;", @class = "autocomplete light" })
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+        </div>
+        
+}
+
+
+

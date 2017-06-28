@@ -1,0 +1,92 @@
+﻿@model PrickCheckerSolutions.ViewModel.vm_Product
+
+
+@if (Model != null)
+{
+    <div class="row">
+        <!-- here goes image rotator-->
+        <div class="col s12 m6">
+
+            @if (Model.images != null)
+            {
+                if ((int)Model.images.Count >= 2)
+                {
+                    <div class="slider">
+                        <ul class="slides">
+
+                            @foreach (var item in Model.images)
+                        {
+                                <li>
+                                    <img class="responsive-img materialboxed hoverable" src='@Url.Content("~/Images/Products/" + item.filename)'>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                <!-- only one image -->
+                    <img class="responsive-img materialboxed hoverable" src='@Url.Content("~/Images/Products/" + Model.images.First().filename)'>
+                }
+            }
+            else
+            {
+                //no image here
+            }
+
+
+        </div>
+
+        <!-- here goes extra details-->
+        <div class="col s12 m6">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h3>
+                        @Model.name
+                        <br />
+                        <small class="grey-text small"><small>@Model.code</small></small>
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <h5>@Model.category</h5>
+                </div>
+                <div class="col s12 m6">
+                    <h5>@Model.brand</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                    <p>@Model.description</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                    @if (Model.tags != null && (int)Model.tags.Count >= 1)
+                {
+                    foreach (var item in Model.tags)
+                    {
+                            <div class="chip">
+                                @item
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <a class="waves-effect waves-light btn blue"><i class="material-icons right">playlist_add</i>Add to shopping list</a>
+                </div>
+                <div class="col s12 m6">
+                    @Html.Partial("_SocialMediaButtons")
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
+
+
